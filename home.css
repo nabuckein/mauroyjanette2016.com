@@ -1,0 +1,455 @@
+:root {
+   --title-bg-color: rgba(0,115,200,0.5);
+   --title-font-color: #ffffff;
+   --tab-bg-color: rgba(0,200,200,0.5);
+   --tab-bg-active-color: #00cc99;
+   --login-button-bg-color:#5010cc;
+   --login-tab-active-color:#7010cc;
+   --cancel-button-bg-color: #ff3300;
+   --login-firebase-bg-color: #0000cc;
+
+}
+body{
+	background-color: #111111;
+	background-blend-mode: normal;
+	background-attachment: fixed;
+	background-image: url('bg.jpg'); 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+
+}
+span{
+	color:white;
+}
+
+#logoutConfirm{
+	border-radius: 10px;
+	margin-top: 200px;
+	z-index: 10;	
+	background-color: white;
+	
+}
+#logoutConfirmText{
+	font-family: 'Dosis';
+	font-size: 20px;
+	color:black;
+
+}
+#rsvpConfirm, #rsvpNotAllowed{
+	border-radius: 10px;
+	margin-top: 200px;
+	z-index: 10;	
+	background-color: white;
+	font-family: 'Dosis';
+	font-size: 20px;
+	color:black;
+	
+}
+#rsvpConfirmText{
+	font-family: 'Dosis';
+	font-size: 20px;
+	color:black;
+	display: block;
+}
+#rsvpGuestConfirmText{
+	font-family: 'Dosis';
+	font-size: 16px;
+	color:black;
+}
+#enterAttendantsInfo{
+	font-family: 'Dosis';
+	font-size: 16px;
+	color:black;
+}
+#bringingGuests{
+	
+	margin-bottom: 30px;
+}
+#userEntreeLabel{
+	font-family: 'Dosis';
+	font-size: 20px;
+	color:black;
+	display: block;
+	margin-top: 25px;
+	font-weight: 500;
+}
+#entreeChoice{
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+.guestEntreeLabelChoices{
+	margin-top: 25px;
+	font-weight: 500;
+}
+.guestEntreeChoice{
+	margin-top: 15px;
+	margin-bottom: 30px;
+
+}
+.radioLabelsAndInputs{
+	font-family: 'Dosis';
+	font-size: 16px;
+	font-weight: 500;
+	color:black;
+	display: block;
+	margin-top: 15px;
+}
+.radio1label1, .radio2label2, .radio3label3{
+	display: inline;
+}
+
+.labelsAndInputs{
+	font-family: 'Dosis';
+	font-size: 16px;
+	font-weight:500;
+	color:black;
+	display: inline;
+}
+.labels{
+	margin-top:15px;
+	display: block;
+}
+.howManyGuests{
+	display: inline;
+}
+#yesLogoutButton, #yesRsvpButton, #yesBringingGuest, #okRsvpNotAllowedButton{
+	background-color: #faa78c;
+	border-color: #faa78c;
+	width:60%;
+	
+}
+#okRsvpNotAllowedButton{
+	margin-bottom: 25px;
+}
+#noLogoutButton, #noRsvpButton, #noBringingGuest{
+	background-color: #060355;
+	border-color: #060355;
+	width:60%;
+	margin-bottom: 25px;
+}
+#howManyGuestsButton{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.title{
+	width:100%;	
+	margin-top:100px;
+	padding-top:100px;
+	padding-bottom:50px;
+	
+}
+#main-title{
+	font-family:"Pacifico";
+	font-size:80px;	
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+
+
+#floatTest{
+	font-family: 'Dosis';
+	background-color: white;	
+	top:50%;
+	left:50%;
+	position: fixed;
+	z-index:10;
+	border-radius: 15px;	
+	
+}
+#floatTitle{
+	font-family: "Dosis";
+	font-size: 18px;
+}
+
+
+#cont1{		
+	color: var(--title-font-color);
+	padding-top: 0px;
+	padding-bottom: 100px;		
+
+}
+
+#imgChurch{
+	margin-left:auto;
+	margin-right: auto;
+	border-radius:15px;
+}
+
+#churchTitle{
+	margin-top:50px;
+	font-family: 'Dosis';
+	font-size: 40px;
+	margin-bottom: 50px;
+}
+.churchInstructions{
+	margin-top:30px;
+	font-family: 'Dosis';
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+.tabs{	
+	color:white;		
+	display: inline;
+	padding-right: 2px;
+	padding-left: 4px;
+	
+}
+
+.btn{
+	color:white;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 1px;
+	background-color: var(--tab-bg-color);
+	font-family:"Dosis";
+	padding-left: 15px;
+	padding-right: 10px;
+	margin-top: 20px;
+	width:100%;
+	}
+
+#accoTab{
+	padding-left:0px;
+	margin-left: 5px;
+}
+
+
+
+#logOutButtonDiv{
+	padding-left:30%;
+	padding-right:30%;
+}
+
+#logoutTab{
+	padding-right:20px;
+
+}
+#logoutButton{
+	background-color: var(--login-button-bg-color);
+	margin-left: 0px;
+}
+#cancelButton{
+	background-color: var(--cancel-button-bg-color);
+	margin-bottom: -15px;
+}
+
+#loginButton,#signupButton{
+	color:white;
+	background-color: var(--login-button-bg-color);
+	margin-top:20px;
+	font-family:'Dosis';	
+	margin-left:0px;
+	width:100%;
+}
+
+#loginStatus{
+	font-size: 16px;
+	font-weight: 500;
+	font-family: 'Dosis';
+	margin-top: 25px;
+
+}
+
+#loginFields{
+	margin-top:30px;
+	margin-bottom: 30px;
+}
+
+.usernameLabelAndInput{
+	margin-bottom: 10px;
+}
+#loginUsernameInput, #loginPasswordInput, #loginFirstNameInput, #loginLastNameInput{
+	margin-left:20px;
+}
+
+#loginUsernameLabel, #loginUsernameInput, #loginFirstNameLabel, #loginFirstNameInput, #loginLastNameLabel, #loginLastNameInput{
+	display: inline;
+	font-family:'Dosis';
+	font-size:20px;
+	font-weight: 500;
+}
+#loginUsernameInput{
+	width: 40%;
+	border-radius: 5px;
+}
+#loginPasswordInput{
+	width: 40%;
+	border-radius: 5px;
+}
+#loginFirstNameInput{
+	width: 40%;
+	border-radius: 5px;
+}
+#loginLastNameInput{
+	width: 40%;
+	border-radius: 5px;
+}
+#loginPasswordLabel, #loginPasswordInput, #loginFirstNameLabel, #loginLastNameInput{
+	display: inline;
+	font-family:'Dosis';
+	font-size:20px;
+	font-weight: 500;
+}
+
+#signupFirebase{
+	background-color: var(--tab-bg-color);
+	margin-bottom: -15px;
+}
+
+#loginButtonFirebase{
+	background-color: var(--tab-bg-color);
+	margin-bottom: -15px;
+}
+
+#loginButtonFacebook{
+	background-color: var(--login-firebase-bg-color);
+	margin-bottom: -15px;
+}
+
+
+#enterAttendantsInfo{
+	margin-top: 25px;
+	margin-bottom: 25px;
+	display: block;
+}
+#submitAttendantsInfo{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+#submitGuestsInfo{
+	margin-top:30px;
+	margin-bottom: 50px;
+}
+
+#loginInput{
+	margin-top:100px;
+	font-family:'Dosis';
+	font-size:20px;
+	margin-right:0px;
+	margin-left:20px;
+	width:100%;	
+	color:black;
+}
+
+.glyphicon{
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#our-story{
+	max-height: 375px;
+	max-width: 500px;
+	margin-left:auto;
+	margin-right: auto;
+	font-family:'Dosis';
+	font-size: 24px;
+	margin-top: 125px;		
+	color:white;
+}
+
+#imgChurch{
+	height: 300px;
+	width: 400px;
+}
+.img0-container{
+	height: 500px;
+
+}
+#img0{
+	margin-top:50px;
+		
+}
+#registry{
+	font-family:'Dosis';
+	font-size: 24px;
+	margin-top: 125px;
+	margin-left:auto;
+	margin-right: auto;
+	color:white;
+}
+#registryMainParagraph{
+
+	font-size:24px;
+
+}
+#accomodations{
+	height: 800px;
+	width: 100%;
+	font-family:'Dosis';
+	font-size: 24px;
+	margin-top: 125px;	
+	color:white;
+}
+#map{
+	height: 80%;
+	width: 80%;	
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	color: black;
+	border-radius: 15px;
+
+}
+
+@keyframes paragraph-anim{
+	0% {color:white;}
+	50% {color:rgba(0,200,200,.8);}
+}
+@-webkit-keyframes paragraph-anim{
+	0% {color:white;}
+	50% {color:rgba(0,200,200,.8);}
+}
+
+#paragraph{
+	font-family:'Dosis';
+	font-size: 24px;	
+	margin-top: 20px;
+	animation-name: paragraph-anim;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	-webkit-animation-name: paragraph-anim;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+}
+#back-to-top{
+	position:fixed;
+	left:0px;
+	top:600px;
+	margin-left:50px;	
+	color:white;
+	font-size:50px;
+	
+}
+
+.carousel{
+	max-height: 500px;
+	max-width: 800px;
+
+}
+
+.extra-room-for-scrolling{
+	height: 600px;
+	width: 100%;
+}
+
+
+
+#fbLoginButton{
+	margin-top: 80px;
+	font-family: 'Dosis';
+
+	height: 50px;
+}
+
+
+#status{
+	margin-top:20px;
+	margin-bottom:20px;
+	color:black;
+	font-family: 'Dosis';
+	font-size: 20px;
+}

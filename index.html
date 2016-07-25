@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html style="height:100%; width:100%; margin:0; padding:0;">
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<!-- My stylesheets and scripts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway:400|Josefin+Sans|Pacifico|Lobster|Dosis' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>		
+<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script type="text/javascript" src="angular.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQA0dVNPtxcFgKLafNhOGAqI2kPhFWgyI&libraries=places&callback=initMap" async defer></script>
+
+
+<!-- Latest compiled and minified CSS -->
+
+
+
+</head>
+
+<body id="body">
+<div id="fb-root"></div>
+<script type="text/javascript">
+	
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=966635506787028";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+var config = {
+	    apiKey: "AIzaSyDoZeygow39EW_VGo6a2u3CIMgLZP1CT1A",
+	    authDomain: "mauroyjanette2016.com",
+	    databaseURL: "https://maujan2016.firebaseio.com",
+	    storageBucket: "maujan2016.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+
+
+
+
+</script>
+<script src="home.js"></script>
+<link rel="stylesheet" href="home.css">
+
+
+
+<div id="back-to-top"><span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span></div>
+		
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+
+<div class="floatTest" >
+	<nav id="floatTest" style="height:500px; width:500px;">
+		<!--h1 class="text-center" id="floatTitle"> Welcome! Please sign in below if you'd like to see RSVP: </h1-->
+		
+		<div id="status" class="text-center col-md-12 col-xs-12">Test</div>
+		
+		<!--fb:login-button id="fbLoginButton" class="text-center col-md-12 col-xs-12" scope="public_profile,email" onlogin="logIntoFacebook();">
+		</fb:login-button-->
+
+		<!--div class="fb-login-button text-center col-md-12 col-xs-12" scope="public_profile,email" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div-->
+
+		
+
+		<div id="loginFields" class="col-md-12 col-xs-12">
+			<label class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginFirstNameLabel">First Name:</label>
+			<input class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginFirstNameInput">
+			<label class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginLastNameLabel">Last Name:</label>
+			<input class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginLastNameInput">
+			<label class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginUsernameLabel">E-mail:</label>
+			<input class="loginLabelsAndInputs usernameLabelAndInput col-md-offset-2 col-md-3" id="loginUsernameInput">
+			<label class="loginLabelsAndInputs passwordLabelAndInput col-md-offset-2 col-md-3" id="loginPasswordLabel">Password:</label>
+			<input class="loginLabelsAndInputs passwordLabelAndInput col-md-offset-2 col-md-3" id="loginPasswordInput" type="password">
+
+		</div>
+
+		<div class="text-center col-md-12 col-xs-12" id="logOutButtonDiv">
+			<!--button class="btn" id="logOutButton" onclick="logoutFB()">Log Out</button-->
+			
+			<button class="btn" id="signupFirebase" onclick="signupFirebase()" >Sign Up</button>			
+			<button class="btn" id="loginButtonFirebase" onclick="logIntoFirebase()" >Log In </button>
+			<button class="btn" id="loginButtonFacebook" onclick="logIntoFacebook()" >Log In With Facebook</button>
+			<button class="btn" id="cancelButton" onclick="minimizeLoginWindow(500,200)" >Cancel</button>
+		</div>
+	</nav>
+</div>
+
+
+<div class="container-fluid">
+	<div class="row col-md-offset-4 col-md-4 col-xs-12 text-center" id="logoutConfirm">
+		<h1 class="text-center col-md-offset-2 col-md-8" id="logoutConfirmText"> Are you sure you'd like to log out? </h1><br>
+		<div>
+			<button class="btn text-center" id="yesLogoutButton" onclick="yesLogoutPressed()">Yes</button>
+			<button class="btn text-center" id="noLogoutButton" onclick="minimizeLogoutConfirmation()">No</button>
+		</div>
+	</div>
+</div>	
+
+
+<div class="container-fluid">
+	<div class="row col-md-offset-4 col-md-4 col-xs-12 text-center" id="rsvpNotAllowed">
+		<h1 class="text-center col-md-offset-2 col-md-8" id="logoutConfirmText"> Please log in using your credentials or Facebook. </h1><br>
+		<div>
+			<button class="btn text-center" id="okRsvpNotAllowedButton" onclick="minimizeRsvpNotAllowed()">OK</button>
+			
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row col-md-offset-4 col-md-4 col-xs-12 text-center" id="rsvpConfirm">
+		<div>
+			<h1 class="text-center col-md-offset-2 col-md-8" id="rsvpConfirmText"> Are you attending the wedding? </h1>
+
+			<button class="btn text-center" id="yesRsvpButton" onclick="saveCurrentUserAsAttendant()">Yes</button>
+			<button class="btn text-center" id="noRsvpButton" onclick="minimizeRsvpConfirmation()">No</button>
+
+			<p class="text-center col-md-offset-2 col-md-8" id="enterAttendantsInfo">Please enter your information: </p>
+			
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="userFirstNameLabel">Your First Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="userFirstNameInput" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="userLastNameLabel">Your Last Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="userLastNameInput" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="userEmailLabel">Your E-mail:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="userEmailInput" type="" name="">
+
+			<label class="text-center col-md-12" id="userEntreeLabel">Your Choice Of Entree:</label>
+			<div class="col-md-12 col-xs-12 text-center" id="entreeChoice">
+				<div class="col-md-12 text-center">
+					<input class="radioLabelsAndInputs radio1label1" id="userEntreeInputRadio1" type="radio" name="entree" value="1" checked>
+					<label class="radioLabelsAndInputs radio1label1" id="userEntreeLabel1">River Roast Chicken</label>
+				</div>
+				<div class="col-md-12 text-center">
+					<input class="radioLabelsAndInputs radio2label2" id="userEntreeInputRadio2" type="radio" name="entree" value="2">
+					<label class="radioLabelsAndInputs radio2label2" id="userEntreeLabel2">Slow Roasted Pork</label>
+				</div>
+
+				<button class="btn text-center" id="submitAttendantsInfo" onclick="submitAttendantsInfo()">Done</button>
+			</div>
+
+			<p class="col-md-12" id="bringingGuests">Are you bringing any guests? </p>
+			
+			<button class="btn text-center" id="yesBringingGuest" onclick="yesBringingGuest()">Yes</button>
+			<button class="btn text-center" id="noBringingGuest" onclick="noBringingGuest()">No</button>
+			<label class="labelsAndInputs howManyGuests col-md-offset-3 col-md-3" id="howManyGuestsLabel">How Many?:</label>
+			<input class="labelsAndInputs text-center howManyGuests col-md-1" id="howManyGuestsInput" type="" name="">
+			<button class="btn text-center" id="howManyGuestsButton" onclick="howManyGuests()">Submit</button>
+
+		</div>
+		<h1 class="text-center col-md-offset-1 col-md-10" id="rsvpGuestConfirmText">Please enter their names and choice of entree: </h1>		
+			
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="firstNameLabel1">Guest #1 First Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="firstNameInput1" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="lastNameLabel1">Guest #1 Last Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="lastNameInput1" type="" name="">
+
+			<div class="col-md-12 col-xs-12 text-center guestEntreeChoice">
+				<div class="col-md-12 text-center" id="guestEntreeChoices1">
+					<label class="text-center col-md-12 guestEntreeLabelChoices" id="guestEntreeLabelChoice1">Guest #1 Choice Of Entree:</label>
+					<input class="radioLabelsAndInputs radio1label1" id="guestEntreeInputRadio11" type="radio" name="guestEntree1" value="1" checked>
+					<label class="radioLabelsAndInputs radio1label1" id="guestEntreeLabel11">River Roast Chicken</label>
+					<input class="radioLabelsAndInputs radio2label2" id="guestEntreeInputRadio12" type="radio" name="guestEntree1" value="2">
+					<label class="radioLabelsAndInputs radio2label2" id="guestEntreeLabel12">Slow Roasted Pork</label>
+					<input class="radioLabelsAndInputs radio3label3" id="guestEntreeInputRadio13" type="radio" name="guestEntree1" value="3">
+					<label class="radioLabelsAndInputs radio3label3" id="guestEntreeLabel13">Child's Menu</label>
+				</div>
+			</div>
+
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="firstNameLabel2">Guest #2 First Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="firstNameInput2" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="lastNameLabel2">Guest #2 Last Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="lastNameInput2" type="" name="">
+
+			<div class="col-md-12 col-xs-12 text-center guestEntreeChoice">
+				<div class="col-md-12 text-center" id="guestEntreeChoices2">
+					<label class="text-center col-md-12 guestEntreeLabelChoices" id="guestEntreeLabelChoice2">Guest #2 Choice Of Entree:</label>
+					<input class="radioLabelsAndInputs radio1label1" id="guestEntreeInputRadio21" type="radio" name="guestEntree2" value="1" checked>
+					<label class="radioLabelsAndInputs radio1label1" id="guestEntreeLabel21">River Roast Chicken</label>
+					<input class="radioLabelsAndInputs radio2label2" id="guestEntreeInputRadio22" type="radio" name="guestEntree2" value="2">
+					<label class="radioLabelsAndInputs radio2label2" id="guestEntreeLabel22">Slow Roasted Pork</label>
+					<input class="radioLabelsAndInputs radio3label3" id="guestEntreeInputRadio23" type="radio" name="guestEntree2" value="3">
+					<label class="radioLabelsAndInputs radio3label3" id="guestEntreeLabel23">Child's Menu</label>
+				</div>
+			</div>
+
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="firstNameLabel3">Guest #3 First Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="firstNameInput3" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="lastNameLabel3">Guest #3 Last Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="lastNameInput3" type="" name="">
+
+			<div class="col-md-12 col-xs-12 text-center guestEntreeChoice">
+				<div class="col-md-12 text-center" id="guestEntreeChoices3">
+					<label class="text-center col-md-12 guestEntreeLabelChoices" id="guestEntreeLabelChoice3">Guest #3 Choice Of Entree:</label>
+					<input class="radioLabelsAndInputs radio1label1" id="guestEntreeInputRadio31" type="radio" name="guestEntree3" value="1" checked>
+					<label class="radioLabelsAndInputs radio1label1" id="guestEntreeLabel31">River Roast Chicken</label>
+					<input class="radioLabelsAndInputs radio2label2" id="guestEntreeInputRadio32" type="radio" name="guestEntree3" value="2">
+					<label class="radioLabelsAndInputs radio2label2" id="guestEntreeLabel32">Slow Roasted Pork</label>
+					<input class="radioLabelsAndInputs radio3label3" id="guestEntreeInputRadio33" type="radio" name="guestEntree3" value="3">
+					<label class="radioLabelsAndInputs radio3label3" id="guestEntreeLabel33">Child's Menu</label>
+				</div>
+			</div>
+
+
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="firstNameLabel4">Guest #4 First Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="firstNameInput4" type="" name="">
+			<label class="labelsAndInputs labels col-md-offset-2 col-md-8" id="lastNameLabel4">Guest #4 Last Name:</label>
+			<input class="labelsAndInputs text-center col-md-offset-2 col-md-8" id="lastNameInput4" type="" name="">
+
+			<div class="col-md-12 col-xs-12 text-center guestEntreeChoice">
+				<div class="col-md-12 text-center" id="guestEntreeChoices4">
+					<label class="text-center col-md-12 guestEntreeLabelChoices" id="guestEntreeLabelChoice4">Guest #4 Choice Of Entree:</label>
+					<input class="radioLabelsAndInputs radio1label1" id="guestEntreeInputRadio41" type="radio" name="guestEntree4" value="1" checked>
+					<label class="radioLabelsAndInputs radio1label1" id="guestEntreeLabel41">River Roast Chicken</label>
+					<input class="radioLabelsAndInputs radio2label2" id="guestEntreeInputRadio42" type="radio" name="guestEntree4" value="2">
+					<label class="radioLabelsAndInputs radio2label2" id="guestEntreeLabel42">Slow Roasted Pork</label>
+					<input class="radioLabelsAndInputs radio3label3" id="guestEntreeInputRadio43" type="radio" name="guestEntree4" value="3">
+					<label class="radioLabelsAndInputs radio3label3" id="guestEntreeLabel43">Child's Menu</label>
+				</div>
+			</div>
+
+			
+			<button class="btn text-center" id="submitGuestsInfo" onclick="submitGuestsInfo()">Done</button>
+		
+	</div>
+</div>	
+
+
+<div class="container-fluid" id="cont1">
+	<div class="row" id="main-content">
+		<div class="col-md-1 col-xs-12 tabs" id="rsvpTab">
+			<a class="btn" id="rsvpButton" onclick="rsvpConfirmation()">RSVP<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="histTab">
+			<a class="btn" id="regButton" onclick="ourStory()">Our Story <span class="glyphicon glyphicon-book" aria-hidden="true"></span></a>
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="regTab">
+			<a class="btn" id="histButton" onclick="registry()">Registry <span class="glyphicon glyphicon-gift" aria-hidden="true"></span></a>
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="accoTab">
+			<a class="btn" id="accoButton" onclick="accomodations()">Accomodations <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></a>
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="churchTab">
+			<a class="btn" id="churchButton" onclick="churchDisplay()" >Church<span class="glyphicon glyphicon-king" aria-hidden="true"></span></a>
+		</div>
+
+		<div class="col-md-offset-2 col-md-2 col-xs-12 tabs" id="loginStatusTab">
+			<p id="loginStatus"> Hello, please sign up or log in. </p>
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="signupTab">
+			<a class="btn" id="signupButton" type="button" onclick="maximizeLoginWindow(0)">Sign Up</a> 
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="loginTab">
+			<a class="btn" id="loginButton" type="button" onclick="maximizeLoginWindow(1)">Log In</a> 
+		</div>
+
+		<div class="col-md-1 col-xs-12 tabs" id="logoutTab">
+			<a class="btn" id="logoutButton" type="button" onclick="logoutConfirmation()">Log Out</a> 
+		</div>
+		<!--div class="col-md-9">
+			<h1 id="searchTab"><input></input></h1>
+		</div-->
+
+		
+		<div id="initialDisplay">
+			<div class="title">
+				<h1 class="text-center" id="main-title"> Mauro Y Janette <br> 09-02-2016 </h1>
+				
+			</div>
+			
+			<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 text-center"> <p id="paragraph">Help us celebrate one of the most important days of our lives! </p> </div>
+			<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 text-center"> <p id="paragraph">Please join us on September 2nd, 2016! </p> </div>
+			
+		</div>
+
+		<div class="text-center col-md-12 col-xs-12" id="churchDisplay">
+			<p id="churchTitle">St. Philomena</p>
+			<div class="col-md-12 col-xs-12 text-center"> 
+				<img class="img-responsive" id="imgChurch" src="church.jpg"> 
+			
+			<p class="churchInstructions">1921 N. Kedvale Ave, Chicago, IL</p>
+			<p class="churchInstructions">Please be sure to arrive by 2:30pm, traffic is expected to be very busy and parking will be limited. Thank you, we are very excited to have you there with us!</p>
+			</div>
+		</div>
+		<!-- code to save data into firebase database
+
+		 onclick="writeUserData('Id1','Mauro','pauri@hotmail.com')"
+			
+		-->
+
+		<div class="text-center" id="our-story">
+			<p>Our story in a few pictures...</p> 
+
+			<div class="col-md-12 col-xs-12 text-center img0-container"> 
+				<img class="img-responsive" id="img0" src="maujan2016.jpg"> 
+			</div>
+
+
+		</div>
+
+		
+		<div class="col-md-12 text-center" id="registry">
+			<p id="regScroll">Registry</p><br><br>
+
+			<P class="col-md-offset-2 col-md-8" id="registryMainParagraph"> Currently we're not registered in any stores/registries. As of right now, a donation for our honeymoon would be our top preference. If you would like a different alternative, some of our favorite stores are: Home Goods, Best Buy, Home Depot, Bed Bath and Beyond....We were not 100% sure about specifying what we would like to receive, and we feel the need to let you know that these are only suggestions, anything you'd like to give us as a gift will be sincerely appreciated, but your presence will be appreciated more than anything else, we look forward to have you there with us so we can celebrate together. Thank you so much in advance! </p>
+
+			
+		</div>
+		<div class="col-md-12 text-center" id="accomodations">
+			<p class="text-center col-md-offset-2 col-md-8" id="accoScroll">Here's a map of the surrounding areas, including hotels near by, and the nearest Metra Train Station...please remember to arrive to the reception at 7:00 PM to enjoy some delicious cocktails or refreshing beer and some delightful snacks...</p>
+			<div id="map"></div>
+		</div>	
+	</div>
+	
+</div>
+
+
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+
+<script type="text/javascript">
+	var signupOrLogin = 0;
+	var globalCurrentUser; 
+	var userCreatedNewAccount = false;
+	var signupFirstName;
+	var signupLastName;
+	var facebookCredential;
+	var emailAndPasswordCredential; 
+	var provider = new firebase.auth.FacebookAuthProvider();
+	var rsvpAllowed = false;
+	
+	//var facebookCredential = firebase.auth.FacebookAuthProvider.credential();
+	displayHome();
+
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    // User is signed in.
+	    //globalCurrentUser = firebase.auth().currentUser;
+	    //var facebookAccessToken = provider.accessToken;				
+	    //var credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
+	    emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(email, password);
+
+	 	rsvpAllowed = true;
+    	
+	    
+	    if (user.displayName != null){
+	    	document.getElementById('loginStatus').innerHTML = "Hi, " + user.displayName;
+   	    	document.getElementById('status').innerHTML = "Welcome, " + user.displayName;
+   	    	console.log("User signed-in: " + user.displayName);
+   	    }
+	    else if(userCreatedNewAccount && user.displayName == null){
+	    	
+	    	console.log("User logged in, displayName is null, and user created new account.");
+
+	    	user.updateProfile({
+			  displayName: signupFirstName + " " + signupLastName
+			  //photoURL: "https://example.com/jane-q-user/profile.jpg"
+			}).then(function() {
+			  // Update successful.
+			  console.log('updateProfile executed succesfully');
+			  document.getElementById('loginStatus').innerHTML = "Hi, " + user.displayName;
+   	    	  document.getElementById('status').innerHTML = "Welcome, " + user.displayName;
+   	    	  console.log("User signed-in: " + user.displayName);
+
+			}, function(error) {
+			  // An error happened.
+			  console.log('updateProfile error');
+
+			});
+			userCreatedNewAccount = false;		
+	    }
+	    else{
+	    	console.log("User displayName = " + user.displayName);
+	    }
+	    minimizeLoginWindow();
+	    $('#loginTab').hide();
+	    $('#signupTab').hide();
+	    $('#logoutTab').fadeIn(500);
+
+	    
+
+
+	  } else {
+	    // No user is signed in.
+	    document.getElementById('loginStatus').innerHTML = "Please sign up or log in.";
+	    console.log("User signed-in: None");
+	    $('#loginTab').fadeIn(500);
+	    $('#signupTab').fadeIn(500);
+	    $('#logoutTab').hide();  
+		
+
+	  }
+	});
+
+	firebase.auth().getRedirectResult().then(function(result) {
+	  if (result.credential) {
+	    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+	    var token = result.credential.accessToken;
+	    // ...
+	    facebookCredential = result.credential;
+
+
+
+
+	  }
+	  // The signed-in user info.
+	  var user = result.user;
+      console.log("User signed-in: " + user.displayName);
+	  console.log("User displayName = " + user.displayName);
+	  document.getElementById('loginStatus').innerHTML = "Hi, " + user.displayName;
+   	  document.getElementById('status').innerHTML = "Welcome, " + user.displayName;
+   	  $('#loginTab').hide();
+	  $('#signupTab').hide();
+	  $('#logoutTab').fadeIn(500);
+	  rsvpAllowed = true;
+	  var verifyEmail = prompt("Please verify your Facebook e-mail:",'');
+  	  var verifyPassword = prompt("Please verify your Facebook password:",'');
+  	  emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(verifyEmail, verifyPassword);	
+      user.link(emailAndPasswordCredential);
+	  
+
+
+	}).catch(function(error) {
+	  // Handle Errors here.
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  // The email of the user's account used.
+	  var email = error.email;
+	  // The firebase.auth.AuthCredential type that was used.
+	  var credential = error.credential;
+
+	  // ...
+
+	  console.log("errorCode = " + errorCode + ". errorMessage = " + errorMessage + ". errorEmail = " + email);
+	  //console.log("Facebook User = " + user);
+	  var auth = firebase.auth();
+	  /*if (errorCode == 'auth/account-exists-with-different-credential'){
+	  	console.log(auth.fetchProvidersForEmail(email).PROVIDER_ID);
+	  	user.link(facebookCredential).then(function(user) {
+		  console.log("Account linking success");
+		}, function(error) {
+		  console.log("Account linking error");
+		});
+	  }*/
+
+	  if (error.code === 'auth/account-exists-with-different-credential') {
+	    // Step 2.
+	    // User's email already exists.
+	    // The pending Facebook credential.
+	    facebookCredential = error.credential;
+	    // The provider account's email address.
+	    var email = error.email;
+	    // Get registered providers for this email.
+	    auth.fetchProvidersForEmail(email).then(function(providers) {
+	      // Step 3.
+	      // If the user has several providers,
+	      // the first provider in the list will be the "recommended" provider to use.
+	      console.log(providers);
+	      if (providers[0] === 'password') {
+		        // Asks the user his password.
+		        // In real scenario, you should handle this asynchronously.
+		        var password = prompt("Please confirm your password",''); // Implement promptUserForPassword.
+		        auth.signInWithEmailAndPassword(email, password).then(function(user) {
+		          // Step 4a.
+		          return user.link(facebookCredential);
+		        }).then(function() {
+		          // Facebook account successfully linked to the existing Firebase user.
+		          //goToApp();
+		          console.log("successfully linked!");
+		        });
+		        return;
+		      }
+		      // All the other cases are external providers.
+		      // Construct provider object for that provider.
+		      // TODO: implement getProviderForProviderId.
+		      //var provider = getProviderForProviderId(providers[0]);
+		      // At this point, you should let the user know that he already has an account
+		      // but with a different provider, and let him validate the fact he wants to
+		      // sign in with this provider.
+		      // Sign in to provider. Note: browsers usually block popup triggered asynchronously,
+		      // so in real scenario you should ask the user to click on a "continue" button
+		      // that will trigger the signInWithPopup.
+	/*	      auth.signInWithPopup(provider).then(function(result) {
+		        // Remember that the user may have signed in with an account that has a different email
+		        // address than the first one. This can happen as Firebase doesn't control the provider's
+		        // sign in flow and the user is free to login using whichever account he owns.
+		        // Step 4b.
+		        // Link to Facebook credential.
+		        // As we have access to the pending credential, we can directly call the link method.
+		        result.user.link(facebookCredential).then(function() {
+		          // Facebook account successfully linked to the existing Firebase user.
+		          goToApp();
+		        });
+		      }); */
+		    });
+		  }
+
+	  console.log(credential);  
+	  
+
+	});
+
+
+
+	var map;
+	var infowindow;
+	var loggedIn = ''; //variable to determine how user is logged in.
+	var logInMethod = '0';
+	 // Initialize Firebase
+	
+	
+
+	  ////////////////////////////////////////////////////
+	  function initMap() {
+		  var pyrmont = {lat: 41.8880, lng: -87.6321};
+		  var ogilvie = {lat: 41.8830267, lng: -87.6405328};
+		  map = new google.maps.Map(document.getElementById('map'), {
+		    center: pyrmont,
+		    zoom: 16
+		    //place_id: ChIJV_s6ILEsDogRR_5H7mQn4nw
+		  });
+
+
+		  infowindow = new google.maps.InfoWindow();
+		  var service = new google.maps.places.PlacesService(map);
+		  service.nearbySearch({
+		    location: pyrmont,
+		    radius: 600,    
+		    type: ['hotels']
+		  }, callback);
+
+		  var riverRoastLogo = 'riverRoastLogo.png';
+
+		  var markerRiverRoast = new google.maps.Marker({			//Add marker for River Roast
+		    position: pyrmont,
+		    map: map,
+		    title: 'River Roast, hope to see you there!',
+		    icon: riverRoastLogo
+		  });
+		  markerRiverRoast.setAnimation(google.maps.Animation.BOUNCE);
+
+		  var trainImage = 'train.png';
+
+		  var markerOgilvie = new google.maps.Marker({				//Add marker for Ogilvie Train Station
+		    position: ogilvie,
+		    map: map,
+		    title: 'Ogilvie Train Station',
+		    icon: trainImage
+		  });
+
+		  
+
+		}
+
+	function callback(results, status) {
+	  if (status === google.maps.places.PlacesServiceStatus.OK) {
+	    for (var i = 0; i < results.length; i++) {
+	      createMarker(results[i]);
+	    }
+	  }
+	}
+
+	function createMarker(place) {
+	  var placeLoc = place.geometry.location;
+	  var marker = new google.maps.Marker({
+	    map: map,
+	    position: place.geometry.location
+	  });
+	  
+
+	  google.maps.event.addListener(marker, 'click', function() {
+	    infowindow.setContent(place.name);
+
+	    infowindow.open(map, this);
+	  });
+	}
+
+
+
+	  // Load the facebook SDK asynchronously
+	  
+
+	  function logoutFB(){
+		FB.logout(function(response) {
+		    document.getElementById('status').innerHTML = "You've been logged out FB, thanks for using our app " + response.name + '!';
+		});
+	  }
+
+	  //////////////////////////////////////////////////////////
+	
+
+	function displayHome(){
+
+		$('#floatTest').hide();
+		//$('#loginTab').hide();
+		$('#rsvpConfirm').hide();
+		$('#userFirstName').hide();
+		$('#userLastName').hide();
+		$('#churchDisplay').hide();
+		$('#our-story').hide();
+		$('#registry').hide();
+		$('#accomodations').hide();
+		$('#rsvpConfirm').hide();
+		$('#logoutConfirm').hide();
+		$('#rsvpNotAllowed').hide();
+		$('#cont1').fadeIn(500);
+
+	}
+	function ourStory(){
+		$('#initialDisplay').hide();
+		$('#registry').hide();
+		$('#accomodations').hide();		
+		$('#churchDisplay').hide();
+		$('#our-story').fadeIn(500);
+	}
+	function registry(){
+		$('#initialDisplay').hide();
+		$('#our-story').hide();
+		$('#accomodations').hide();		
+		$('#churchDisplay').hide();
+		$('#registry').fadeIn(500);
+	}
+	function accomodations(){
+		$('#initialDisplay').hide();
+		$('#registry').hide();
+		$('#our-story').hide();		
+		$('#churchDisplay').hide();
+		$('#accomodations').fadeIn(500);
+		initMap();
+	}
+
+	function churchDisplay(){
+		$('#initialDisplay').hide();
+		$('#registry').hide();
+		$('#our-story').hide();
+		$('#accomodations').hide();		
+		$('#churchDisplay').fadeIn(500);
+	}
+
+	function maximizeLoginWindow(buttonPressed){
+
+		$('#cont1').hide();
+		$('#status').fadeIn(500);
+		$('#fb-login-button').fadeIn(500);		
+		$('#logoutTab').fadeIn(500);
+		console.log(buttonPressed);
+		$('#floatTest').fadeIn(500);
+
+		if (buttonPressed == 0){
+			console.log("0 passed");
+			$('#loginFirstNameLabel').fadeIn(500);
+			$('#loginFirstNameInput').fadeIn(500);
+			$('#loginLastNameLabel').fadeIn(500);
+			$('#loginLastNameInput').fadeIn(500);
+			$('#loginButtonFirebase').hide();
+			$('#signupFirebase').fadeIn(500);
+			document.getElementById('status').innerHTML = "Please sign up or log in with your Facebook credentials."
+		}
+		else{
+
+			console.log("1 passed");
+			$('#loginFirstNameLabel').hide();
+			$('#loginFirstNameInput').hide();
+			$('#loginLastNameLabel').hide();
+			$('#loginLastNameInput').hide();
+			$('#signupFirebase').hide();
+			$('#loginButtonFirebase').fadeIn(500);
+			document.getElementById('status').innerHTML = "Please log in with your e-mail and password or your Facebook credentials."
+
+			//alert("False");
+
+		}
+		
+	}
+
+	function minimizeLoginWindow(hideRate, fadeInRate){
+		$('#floatTest').hide(hideRate);
+		$('#cont1').fadeIn(fadeInRate);
+		
+
+		if (globalCurrentUser) {
+		  // User is signed in.
+		  $('#loginTab').hide();
+		  $('#signupTab').hide();
+		  $('#logoutTab').fadeIn(500);
+		  
+
+		} else {
+		  // No user is signed in.
+		  $('#logoutTab').hide();
+		  $('#loginTab').fadeIn(500);
+		  $('#signupTab').fadeIn(500);
+		}
+	}
+	
+	function writeUserData(userId, email) {
+		name = document.getElementById('loginInput').value;
+		firebase.database().ref('users/' + userId).set({
+		username: name,
+		email: email
+	  });
+	}
+
+	function logoutConfirmation(){
+		$('#cont1').hide();
+		$('#logoutConfirm').fadeIn(500);
+	}
+
+	function minimizeLogoutConfirmation(){
+		$('#cont1').fadeIn(500);
+		$('#logoutConfirm').hide();
+	}
+
+	function rsvpConfirmation(){
+		
+		if (rsvpAllowed){
+			$('#enterAttendantsInfo').hide();
+			$('#userFirstNameLabel').hide();
+			$('#userFirstNameInput').hide();
+			$('#userLastNameLabel').hide();
+			$('#userLastNameInput').hide();
+			$('#userEmailLabel').hide();
+			$('#userEmailInput').hide();
+			$('#userEntreeLabel').hide();
+			$('#userEntreeLabel1').hide();
+			$('#userEntreeLabel2').hide();
+			$('#userEntreeInputRadio1').hide();
+			$('#userEntreeInputRadio2').hide();
+
+			$('#guestEntreeChoices1').hide();
+			$('#guestEntreeChoices2').hide();
+			$('#guestEntreeChoices3').hide();
+			$('#guestEntreeChoices4').hide();		
+
+			$('#submitAttendantsInfo').hide();
+			$('#bringingGuests').hide();
+			$('#yesBringingGuest').hide();
+			$('#noBringingGuest').hide();		
+			$('#howManyGuestsLabel').hide();
+			$('#howManyGuestsInput').hide();	
+			$('#howManyGuestsButton').hide();	
+			$('#rsvpGuestConfirmText').hide();
+			$('#firstNameLabel1').hide();
+			$('#firstNameInput1').hide();
+			$('#lastNameLabel1').hide();
+			$('#lastNameInput1').hide();
+			$('#firstNameLabel2').hide();
+			$('#firstNameInput2').hide();
+			$('#lastNameLabel2').hide();
+			$('#lastNameInput2').hide();
+			$('#firstNameLabel3').hide();
+			$('#firstNameInput3').hide();
+			$('#lastNameLabel3').hide();
+			$('#lastNameInput3').hide();
+			$('#firstNameLabel4').hide();
+			$('#firstNameInput4').hide();
+			$('#lastNameLabel4').hide();
+			$('#lastNameInput4').hide();
+			$('#firstNameLabel5').hide();
+			$('#firstNameInput5').hide();
+			$('#lastNameLabel5').hide();
+			$('#lastNameInput5').hide();
+			$('#submitGuestsInfo').hide();
+			$('#cont1').hide();
+			$('#rsvpConfirm').fadeIn(500);
+		}
+		else{
+			$('#cont1').hide();
+			$('#rsvpNotAllowed').fadeIn(500);
+		}
+
+
+	}
+
+	function minimizeRsvpConfirmation(){
+		$('#rsvpConfirm').hide();
+		$('#cont1').fadeIn(500);
+	}
+
+	function minimizeRsvpNotAllowed(){
+		
+		
+		$('#rsvpNotAllowed').hide();
+		$('#cont1').fadeIn(500);
+	}
+
+	function submitAttendantsInfo(){
+		$('#enterAttendantsInfo').hide();
+		$('#rsvpConfirmText').hide();
+		$('#userFirstNameLabel').hide();
+		$('#userFirstNameInput').hide();
+		$('#userLastNameLabel').hide();
+		$('#userLastNameInput').hide();
+		$('#userEmailLabel').hide();
+		$('#userEmailInput').hide();
+		$('#userEntreeLabel').hide();
+		$('#userEntreeLabel1').hide();
+		$('#userEntreeLabel2').hide();
+		$('#userEntreeInputRadio1').hide();
+		$('#userEntreeInputRadio2').hide();
+
+		$('#submitAttendantsInfo').hide();		
+		var usersFirstName = document.getElementById('userFirstNameInput').value;
+		var usersLastName = document.getElementById('userLastNameInput').value;
+		var usersEmail = document.getElementById('userEmailInput').value;
+		var usersEntree1 = document.getElementById('userEntreeInputRadio1').checked;
+		var usersEntree2 = document.getElementById('userEntreeInputRadio2').checked;
+		var userEntreeChoice;
+		//console.log(usersEntree1 + " " + usersEntree2);
+		if (usersEntree1 = true){
+			userEntreeChoice = 'River Roast Chicken';
+		}
+		else if (usersEntree2 = true){
+			userEntreeChoice = 'Slow Roasted Pork';
+		}
+		else{
+			alert('Please pick an entree');
+		}
+		//console.log(userEntreeChoice);
+		if (usersFirstName!='' && usersLastName !=''){
+			var userFirstAndLastName = usersFirstName + " " + usersLastName;
+			firebase.database().ref('users/' + userFirstAndLastName).push({
+				e_mail: usersEmail,
+				entree: userEntreeChoice
+			});
+		}
+		$('#bringingGuests').fadeIn(500);
+		$('#yesBringingGuest').fadeIn(500);
+		$('#noBringingGuest').fadeIn(500);
+		return userFirstAndLastName;
+	}
+
+	function yesBringingGuest(){
+		$('#noBringingGuest').hide();
+		$('#yesBringingGuest').hide();
+		$('#howManyGuestsLabel').fadeIn(500);
+		$('#howManyGuestsInput').fadeIn(500);
+		$('#howManyGuestsButton').fadeIn(500);		
+	}			
+	
+	function noBringingGuest(){
+		$('#noBringingGuest').hide();
+		$('#yesBringingGuest').hide();
+		document.getElementById('bringingGuests').innerHTML = 'Thank you, we look forward to seeing you there!';
+		$('#submitGuestsInfo').fadeIn(500);
+
+	}
+
+	function howManyGuests(){
+		$('#yesBringingGuest').hide();
+		$('#noBringingGuest').hide();
+		$('#rsvpConfirmText').hide();
+		$('#howManyGuestsLabel').hide();
+		$('#howManyGuestsInput').hide();
+		$('#howManyGuestsButton').hide();
+		$('#rsvpGuestConfirmText').fadeIn(500);
+		var correctNumberOfGuests=false;
+
+
+		var howManyGuests = document.getElementById('howManyGuestsInput').value;
+
+		switch(howManyGuests){
+			case '1':
+				$('#firstNameLabel1').fadeIn(500);
+				$('#firstNameInput1').fadeIn(500);
+				$('#lastNameLabel1').fadeIn(500);
+				$('#lastNameInput1').fadeIn(500);
+
+				$('#guestEntreeChoices1').fadeIn(500);
+				/*
+				$('#guestEntreeLabelChoice1').fadeIn(500);
+				$('#guestEntreeLabel11').fadeIn(500);
+				$('#guestEntreeInputRadio11').fadeIn(500);
+				$('#guestEntreeLabel12').fadeIn(500);
+				$('#guestEntreeInputRadio12').fadeIn(500);
+				$('#guestEntreeLabel13').fadeIn(500);
+				$('#guestEntreeInputRadio13').fadeIn(500);
+				*/
+				correctNumberOfGuests=true;
+				break;
+
+			case '2':
+				$('#firstNameLabel1').fadeIn(500);
+				$('#firstNameInput1').fadeIn(500);
+				$('#lastNameLabel1').fadeIn(500);
+				$('#lastNameInput1').fadeIn(500);
+				$('#firstNameLabel2').fadeIn(500);
+				$('#firstNameInput2').fadeIn(500);
+				$('#lastNameLabel2').fadeIn(500);
+				$('#lastNameInput2').fadeIn(500);
+
+				$('#guestEntreeChoices1').fadeIn(500);
+				$('#guestEntreeChoices2').fadeIn(500);
+				
+				correctNumberOfGuests=true;
+				break;
+
+			case '3':
+				$('#firstNameLabel1').fadeIn(500);
+				$('#firstNameInput1').fadeIn(500);
+				$('#lastNameLabel1').fadeIn(500);
+				$('#lastNameInput1').fadeIn(500);
+				$('#firstNameLabel2').fadeIn(500);
+				$('#firstNameInput2').fadeIn(500);
+				$('#lastNameLabel2').fadeIn(500);
+				$('#lastNameInput2').fadeIn(500);
+				$('#firstNameLabel3').fadeIn(500);
+				$('#firstNameInput3').fadeIn(500);
+				$('#lastNameLabel3').fadeIn(500);
+				$('#lastNameInput3').fadeIn(500);
+
+				$('#guestEntreeChoices1').fadeIn(500);
+				$('#guestEntreeChoices2').fadeIn(500);
+				$('#guestEntreeChoices3').fadeIn(500);
+
+				correctNumberOfGuests=true;
+				break;
+
+			case '4':
+				$('#firstNameLabel1').fadeIn(500);
+				$('#firstNameInput1').fadeIn(500);
+				$('#lastNameLabel1').fadeIn(500);
+				$('#lastNameInput1').fadeIn(500);
+				$('#firstNameLabel2').fadeIn(500);
+				$('#firstNameInput2').fadeIn(500);
+				$('#lastNameLabel2').fadeIn(500);
+				$('#lastNameInput2').fadeIn(500);
+				$('#firstNameLabel3').fadeIn(500);
+				$('#firstNameInput3').fadeIn(500);
+				$('#lastNameLabel3').fadeIn(500);
+				$('#lastNameInput3').fadeIn(500);
+				$('#firstNameLabel4').fadeIn(500);
+				$('#firstNameInput4').fadeIn(500);
+				$('#lastNameLabel4').fadeIn(500);
+				$('#lastNameInput4').fadeIn(500);
+
+				$('#guestEntreeChoices1').fadeIn(500);
+				$('#guestEntreeChoices2').fadeIn(500);
+				$('#guestEntreeChoices3').fadeIn(500);
+				$('#guestEntreeChoices4').fadeIn(500);
+
+				correctNumberOfGuests=true;
+				break;
+			
+			default:
+				alert("Please enter up to 4 guests. Thank you! :)");
+				$('#submitGuestsInfo').hide();
+				$('#rsvpGuestConfirmText').hide();
+				$('#yesBringingGuest').fadeIn(500);
+				$('#noBringingGuest').fadeIn(500);
+				correctNumberOfGuests=false;									
+		}
+		if (correctNumberOfGuests){
+			$('#submitGuestsInfo').fadeIn(500);
+			$('#rsvpGuestConfirmText').fadeIn(500);
+		}
+		else{
+			$('#submitGuestsInfo').hide();
+			$('#rsvpGuestConfirmText').hide();
+		}
+		
+	}
+
+
+	
+	function submitGuestsInfo(){
+		
+		$('#rsvpConfirm').hide();
+		$('#cont1').fadeIn(500);
+		var firstNameInput1 = document.getElementById('firstNameInput1').value;
+		var lastNameInput1 = document.getElementById('lastNameInput1').value;
+		var firstNameInput2 = document.getElementById('firstNameInput2').value;
+		var lastNameInput2 = document.getElementById('lastNameInput2').value;
+		var firstNameInput3 = document.getElementById('firstNameInput3').value;
+		var lastNameInput3 = document.getElementById('lastNameInput3').value;
+		var firstNameInput4 = document.getElementById('firstNameInput4').value;
+		var lastNameInput4 = document.getElementById('lastNameInput4').value;
+		//var firstNameInput5 = document.getElementById('firstNameInput5').value;
+		//var lastNameInput5 = document.getElementById('lastNameInput5').value;
+
+		var usersFirstName = document.getElementById('userFirstNameInput').value;
+		var usersLastName = document.getElementById('userLastNameInput').value;
+		var userFirstAndLastName = usersFirstName + " " + usersLastName;
+
+		var n; 
+	
+		for (n=1 ; n<=3 ; n++){
+			var getGuestsEntreeChoice = 'guestEntreeInputRadio1' + n;
+			var inputNumber = document.getElementById(getGuestsEntreeChoice).checked;
+				if (inputNumber){
+					var pos = 'guestEntreeLabel1' + n;
+					var choice = document.getElementById(pos).innerHTML;
+					firebase.database().ref('users/' + userFirstAndLastName).push({
+						guest_1: firstNameInput1 + " " + lastNameInput1,
+						entree_choice: choice
+					});
+				}
+				
+		}
+		n=1;
+		for (n=1 ; n<=3 ; n++){
+			var getGuestsEntreeChoice = 'guestEntreeInputRadio2' + n;
+			var inputNumber = document.getElementById(getGuestsEntreeChoice).checked;
+				if (inputNumber){
+					var pos = 'guestEntreeLabel2' + n;
+					var choice = document.getElementById(pos).innerHTML;
+					firebase.database().ref('users/' + userFirstAndLastName).push({
+						guest_2: firstNameInput2 + " " + lastNameInput2,
+						entree_choice: choice
+					});
+				}
+				
+		}
+		n=1;
+		for (n=1 ; n<=3 ; n++){
+			var getGuestsEntreeChoice = 'guestEntreeInputRadio3' + n;
+			var inputNumber = document.getElementById(getGuestsEntreeChoice).checked;
+				if (inputNumber){
+					var pos = 'guestEntreeLabel3' + n;
+					var choice = document.getElementById(pos).innerHTML;
+					firebase.database().ref('users/' + userFirstAndLastName).push({
+						guest_3: firstNameInput3 + " " + lastNameInput3,
+   						entree_choice: choice
+					});
+				}
+				
+		}
+		n=1;
+		for (n=1 ; n<=3 ; n++){
+			var getGuestsEntreeChoice = 'guestEntreeInputRadio4' + n;
+			var inputNumber = document.getElementById(getGuestsEntreeChoice).checked;
+				if (inputNumber){
+					var pos = 'guestEntreeLabel4' + n;
+					var choice = document.getElementById(pos).innerHTML;
+					var guestNumber = 'guest_' + n;
+					firebase.database().ref('users/' + userFirstAndLastName).push({
+						guest_4: firstNameInput4 + " " + lastNameInput4,
+						entree_choice: choice
+					});
+				}
+				
+		}
+		
+
+		
+		
+	}
+	function saveCurrentUserAsAttendant(){
+		$('#yesRsvpButton').hide();
+		$('#noRsvpButton').hide();
+		$('#enterAttendantsInfo').fadeIn();
+		$('#userFirstNameLabel').fadeIn(1000);
+		$('#userFirstNameInput').fadeIn(1000);
+		$('#userLastNameLabel').fadeIn(1000);
+		$('#userLastNameInput').fadeIn(1000);
+		$('#userEmailLabel').fadeIn(1000);
+		$('#userEmailInput').fadeIn(1000);
+		$('#userEntreeLabel').fadeIn(1000);
+		$('#userEntreeLabel1').fadeIn(1000);
+		$('#userEntreeLabel2').fadeIn(1000);
+		$('#userEntreeInputRadio1').fadeIn(1000);
+		$('#userEntreeInputRadio2').fadeIn(1000);
+		$('#submitAttendantsInfo').fadeIn(1000);	
+		
+	}
+
+	/*
+
+	 // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      //minimizeLoginWindow(1,200);
+      //testAPI();
+      logInMethod = '1';
+
+      //loggedIn = "Facebook";
+      
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app with your username/password.';
+      logInMethod = '2';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook, or login with your username/password.';
+      logInMethod = '3';
+    }
+    console.log("Jump to " + logInMethod);
+
+  }
+
+  */
+
+  /*
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+
+    });
+  }
+
+  */
+
+  /*
+  function logIntoFacebook(){
+  	minimizeLoginWindow(1,1);
+  	FB.login(function(response) {
+	    if (response.authResponse) {
+	     console.log('Welcome!  Fetching your information.... ');
+	     FB.api('/me', function(response) {
+	       console.log('Good to see you, ' + response.name + '.');
+	       
+	     });
+	    } else {
+	     console.log('User cancelled login or did not fully authorize.');
+	    }
+	},{scope: 'email,public_profile'});
+ }
+ */
+  
+
+  
+ /*
+  function checkFirebaseLogin(){
+  	var email = document.getElementById('loginUsernameInput').value;
+  	var password = document.getElementById('loginPasswordInput').value;
+  	if (email != null) {
+  		email = document.getElementById('loginUsernameInput').value;
+  	} 
+
+  	if (password != null){
+  		password = document.getElementById('loginPasswordInput').value;  		
+  	}
+	
+  	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    // User is signed in.
+	    var signedInUser = firebase.auth().currentUser;
+
+	    console.log(signedInUser.displayName + " is signed in.");
+	    logInMethod = '4';
+	    
+	  } else {
+	    // No user is signed in.
+	    console.log('No user is signed in - Firebase.');
+	    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // ...
+		  console.log(errorMessage + " " + errorCode);
+		});
+		logInMethod = '5';
+	  }
+
+	  
+	});
+	    
+  }
+
+*/
+
+  function signupFirebase(){
+  	userCreatedNewAccount = true;
+
+  	if (document.getElementById('loginUsernameInput').value != '' && document.getElementById('loginPasswordInput').value != ''){
+  		var usernameFirebase = document.getElementById('loginUsernameInput').value;
+  		var passwordFirebase = document.getElementById('loginPasswordInput').value;
+  		signupFirstName = document.getElementById('loginFirstNameInput').value;
+  		signupLastName = document.getElementById('loginLastNameInput').value;
+  		//var loginStatus = document.getElementById('loginStatus').innerHTML;
+
+  		console.log("Username Firebase = " + usernameFirebase + ", Password Firebase = " + passwordFirebase );
+
+  		firebase.auth().createUserWithEmailAndPassword(usernameFirebase, passwordFirebase).catch(function(error) {
+		  // Handle Errors here.
+		  
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  if (errorCode = 'auth/email-already-in-use'){
+		  	//alert("Error when creating new user. " + errorMessage );
+		  	document.getElementById('status').innerHTML = "Error when creating new user. " + errorMessage ;
+		  }
+		  else{
+		  	document.getElementById('status').innerHTML = "Something went wrong, please create a new user, try again, or try signing in with Facebook";
+		  }
+		});
+  		
+
+  	}
+  	else{
+  		document.getElementById('status').innerHTML = "Please check Username and Password fields...";
+  	}
+
+	
+
+  	
+  }
+
+  
+  
+
+
+
+  function logIntoFacebook(){
+
+  	firebase.auth().signInWithRedirect(provider);
+
+  }
+
+  function logIntoFirebase(){
+
+  	if (document.getElementById('loginUsernameInput').value != '' && document.getElementById('loginPasswordInput').value != ''){
+  		var usernameFirebase = document.getElementById('loginUsernameInput').value;
+  		var passwordFirebase = document.getElementById('loginPasswordInput').value;
+
+  		console.log("Username Firebase = " + usernameFirebase + ", Password Firebase = " + passwordFirebase );
+
+
+
+  		firebase.auth().signInWithEmailAndPassword(usernameFirebase, passwordFirebase).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  console.log("errorCode = " + errorCode);
+		  if (errorCode == 'auth/user-not-found'){
+		  	document.getElementById('status').innerHTML = "User does not exist, please sign up or log in with Facebook.";
+		  	$('#loginButtonFirebase').hide();
+		  	$('#signupFirebase').fadeIn(500);
+		  }
+		  else if (errorCode == 'auth/invalid-email'){
+		  	document.getElementById('status').innerHTML = "Looks like the e-mail address is not valid, please enter a valid one.";
+
+		  }
+		  else if (errorCode == 'auth/wrong-password'){
+		  	var providerAuth = firebase.auth();
+  			if (providerAuth.fetchProvidersForEmail(usernameFirebase)!=null){
+  				var providers = providerAuth.fetchProvidersForEmail(usernameFirebase).then(function(providers){
+  					console.log("User already exists with the following provider: " + providers[0]);  	
+  					providerAuth.signInWithRedirect(provider) 
+  					
+  						
+  					
+  					console.log("Signed in via Facebook!");
+  				});  				
+  				//document.getElementById('status').innerHTML = "User already exists, please sign in with Facebook";
+  			}
+  			//console.log(providerAuth.fetchProvidersForEmail(usernameFirebase)); 
+		  	else{
+		  		document.getElementById('status').innerHTML = "Looks like your password is wrong, please try re-entering it.";
+		  	}
+
+		  }else if (errorCode == 'auth/user-disabled'){
+		  	document.getElementById('status').innerHTML = "Your user has been disabled.";
+
+		  }  	
+		  
+
+		  // ...
+		});
+
+
+
+  	}
+  	else{
+  		console.log("Username OR Password OR both are null");
+  		document.getElementById('status').innerHTML = "Please check Username and Password fields...";
+  	}
+  	
+  }
+
+
+function yesLogoutPressed(){
+  	//logoutFB(); //CAUTION, this will log you out from Facebook as well
+  	firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	}, function(error) {
+	  // An error happened.
+	});
+	$('#loginTab').fadeIn(500);
+	$('#signupTab').fadeIn(500);
+	rsvpAllowed = false;
+  	minimizeLogoutConfirmation();
+
+  }
+
+  /*
+    function loginHandler(loginVar){
+
+  	switch (loginVar){
+
+  		case '0':
+  			//maximizeLoginWindow();
+  			window.fbAsyncInit = function() {
+			  FB.init({
+			    appId      : '966635506787028',
+			    cookie     : true,  // enable cookies to allow the server to access 
+			                        // the session
+			    xfbml      : true,  // parse social plugins on this page
+			    version    : 'v2.5' // use graph api version 2.5
+			  });
+
+			  // Now that we've initialized the JavaScript SDK, we call 
+			  // FB.getLoginStatus().  This function gets the state of the
+			  // person visiting this page and can return one of three states to
+			  // the callback you provide.  They can be:
+			  //
+			  // 1. Logged into your app ('connected')
+			  // 2. Logged into Facebook, but not your app ('not_authorized')
+			  // 3. Not logged into Facebook and can't tell if they are logged into
+			  //    your app or not.
+			  //
+			  // These three cases are handled in the callback function.
+
+			  FB.getLoginStatus(function(response) {                                                       //Check for Login status
+			    statusChangeCallback(response);
+			    
+			    });
+
+			  };
+
+  			console.log("case 0 has been executed");
+
+  			//break;
+
+  		case '1':
+  			minimizeLoginWindow(1,1);
+  			console.log("case 1 has been executed");
+  			//break;
+
+  		case '2':
+  			minimizeLoginWindow(1,1);
+  			displayHome();
+  			console.log("case 2 has been executed");
+  			//break;
+
+  		case '3':
+  			checkFirebaseLogin();
+  			minimizeLoginWindow(1,1);
+  			console.log("case 3 has been executed");
+  			//break;
+
+  		case '4':
+  			minimizeLoginWindow(1,1);
+  			console.log("case 4 has been executed");
+
+  			//break;
+
+  		case '5':
+  			//signUpWindow();
+  			console.log("Need to sign up!");
+  			console.log("case 5 has been executed");
+
+  			//break;
+  		default: 
+  			console.log("Login method undetermined!");
+  			//break; NOT NEEDED IN JAVASCRIPT SWITCH
+  	}
+  	console.log(loginVar);
+  	
+  }
+
+  
+  loginHandler(logInMethod); // Check login status /////////////FIIIIIIIIIXXXXXX
+
+*/
+  
+</script>
+
+
+<script type="text/javascript">
+
+	displayHome();
+
+</script>
+</body>
+</html>
