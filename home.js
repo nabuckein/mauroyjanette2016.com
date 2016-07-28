@@ -1,5 +1,5 @@
 $(function(){
-	var images = ["weddingBg.jpg", "maujan2016.jpg", "bg.jpg"];
+	var images = ["maujan2016.jpg","chicago_hats.jpg", "bg2.jpg", "chicago_train.jpg", "starbucks_ring.jpg", "greece.jpg"];
 	var image = $('#img0');
 	var i=0;
 	var offset = 100;
@@ -26,8 +26,8 @@ $(function(){
 	*/
 	
 	//Initial Display or home------------------------------------------------------------------------------------------------//
+	$('#body').css({"background-blend-mode":"normal"});
 	
-
 
 	$('#floatTest').css({"marginTop":-floatTestHeightOffset});
 	$('#floatTest').css({"marginLeft":-floatTestWidthOffset});
@@ -62,11 +62,6 @@ $(function(){
 
 
 
-	$(document).click(function(){
-		//console.log(windowHeight + " " + windowWidth + " " + document.getElementById('registry').offsetTop + " " + document.getElementById('registry').scrollTop);
-
-	});
-
 	/*Animate #main-title-----------------------------------------------*/ 
 	
 	$('#main-title').hide();
@@ -90,7 +85,7 @@ $(function(){
 	
 	$('#back-to-top').css({"top":backToTopY});
 	$(document).scroll(function(){
-		console.log($(this).scrollTop() + " " + offset);
+		//console.log($(this).scrollTop() + " " + offset);
 		if ($(this).scrollTop()>offset){				
 				$('#back-to-top').fadeIn(250);
 				}
@@ -146,6 +141,7 @@ $(function(){
 	$("#rsvpTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 	});
 		
 	/*$("#rsvpTab").click(function(){
@@ -159,6 +155,8 @@ $(function(){
 	$("#histTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"overlay"});
+
 
 	});
 
@@ -168,6 +166,7 @@ $(function(){
 	$("#regTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 	});		
 			
 
@@ -179,6 +178,7 @@ $(function(){
 	$("#accoTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 		//$('html,body').animate({scrollTop:accoScroll},500);
 	});
 
@@ -189,6 +189,7 @@ $(function(){
 	$("#churchTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 		
 	});	
 
@@ -200,6 +201,7 @@ $(function(){
 	$("#loginTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 	});
 
 	$("#logoutButton").hover(function(){
@@ -209,6 +211,7 @@ $(function(){
 	$("#logoutTab").click(function(){
 		//$(this).animate({marginLeft:"-=5px",marginTop:"-=5px",height:"+=10px", width:"+=5px"},100);},function(){$(this).animate({marginLeft:"+=5px",marginTop:"+=5px",height:"-=10px", width:"-=5"},100)
 		$(this).effect("shake",{direction:"up",distance:2,times:1},150);
+		$('#body').css({"background-blend-mode":"normal"});
 	});
 	
 	

@@ -23,20 +23,21 @@ span{
 	color:white;
 }
 
-#logoutConfirm{
+#logoutConfirm, #rsvpNotAllowed{
 	border-radius: 10px;
 	margin-top: 200px;
 	z-index: 10;	
 	background-color: white;
 	
 }
+
 #logoutConfirmText{
 	font-family: 'Dosis';
 	font-size: 20px;
 	color:black;
 
 }
-#rsvpConfirm, #rsvpNotAllowed{
+#rsvpConfirm{
 	border-radius: 10px;
 	margin-top: 200px;
 	z-index: 10;	
@@ -119,13 +120,13 @@ span{
 	width:60%;
 	
 }
-#okRsvpNotAllowedButton{
-	margin-bottom: 25px;
-}
 #noLogoutButton, #noRsvpButton, #noBringingGuest{
 	background-color: #060355;
 	border-color: #060355;
 	width:60%;
+	margin-bottom: 25px;
+}
+#okRsvpNotAllowedButton{
 	margin-bottom: 25px;
 }
 #howManyGuestsButton{
@@ -249,7 +250,12 @@ span{
 	font-weight: 500;
 	font-family: 'Dosis';
 	margin-top: 25px;
+	margin-left:100px;
 
+
+}
+#loginStatusTab{
+	
 }
 
 #loginFields{

@@ -32,6 +32,8 @@
 <script type="text/javascript">
 	
 
+//Load Facebook SDK
+
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -40,6 +42,8 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+//Initialize Firebase with appropriate credentials
+
 var config = {
 	    apiKey: "AIzaSyDoZeygow39EW_VGo6a2u3CIMgLZP1CT1A",
 	    authDomain: "mauroyjanette2016.com",
@@ -47,6 +51,51 @@ var config = {
 	    storageBucket: "maujan2016.appspot.com",
 	  };
 	  firebase.initializeApp(config);
+
+
+	  //Initialize Google Maps services
+
+
+		  window.initMap = function() {
+		  var pyrmont = {lat: 41.8880, lng: -87.6321};
+		  var ogilvie = {lat: 41.8830267, lng: -87.6405328};
+		  map = new google.maps.Map(document.getElementById('map'), {
+		    center: pyrmont,
+		    zoom: 16
+		    //place_id: ChIJV_s6ILEsDogRR_5H7mQn4nw
+		  });
+
+
+		  infowindow = new google.maps.InfoWindow();
+		  var service = new google.maps.places.PlacesService(map);
+		  service.nearbySearch({
+		    location: pyrmont,
+		    radius: 600,    
+		    type: ['hotels']
+		  }, callback);
+
+		  var riverRoastLogo = 'riverRoastLogo.png';
+
+		  var markerRiverRoast = new google.maps.Marker({			//Add marker for River Roast
+		    position: pyrmont,
+		    map: map,
+		    title: 'River Roast, hope to see you there!',
+		    icon: riverRoastLogo
+		  });
+		  markerRiverRoast.setAnimation(google.maps.Animation.BOUNCE);
+
+		  var trainImage = 'train.png';
+
+		  var markerOgilvie = new google.maps.Marker({				//Add marker for Ogilvie Train Station
+		    position: ogilvie,
+		    map: map,
+		    title: 'Ogilvie Train Station',
+		    icon: trainImage
+		  });
+
+		  
+
+		}
 
 
 
@@ -140,7 +189,7 @@ var config = {
 			<label class="text-center col-md-12" id="userEntreeLabel">Your Choice Of Entree:</label>
 			<div class="col-md-12 col-xs-12 text-center" id="entreeChoice">
 				<div class="col-md-12 text-center">
-					<input class="radioLabelsAndInputs radio1label1" id="userEntreeInputRadio1" type="radio" name="entree" value="1" checked>
+					<input class="radioLabelsAndInputs radio1label1" id="userEntreeInputRadio1" type="radio" name="entree" value="1">
 					<label class="radioLabelsAndInputs radio1label1" id="userEntreeLabel1">River Roast Chicken</label>
 				</div>
 				<div class="col-md-12 text-center">
@@ -148,7 +197,7 @@ var config = {
 					<label class="radioLabelsAndInputs radio2label2" id="userEntreeLabel2">Slow Roasted Pork</label>
 				</div>
 
-				<button class="btn text-center" id="submitAttendantsInfo" onclick="submitAttendantsInfo()">Done</button>
+				<button class="btn text-center" id="submitAttendantsInfo" onclick="submitAttendantsInfo()">Submit</button>
 			</div>
 
 			<p class="col-md-12" id="bringingGuests">Are you bringing any guests? </p>
@@ -260,7 +309,7 @@ var config = {
 			<a class="btn" id="churchButton" onclick="churchDisplay()" >Church<span class="glyphicon glyphicon-king" aria-hidden="true"></span></a>
 		</div>
 
-		<div class="col-md-offset-2 col-md-2 col-xs-12 tabs" id="loginStatusTab">
+		<div class="col-md-offset-2 col-md-2 col-xs-12 tabs text-center" id="loginStatusTab">
 			<p id="loginStatus"> Hello, please sign up or log in. </p>
 		</div>
 
@@ -339,6 +388,10 @@ var config = {
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
+<script type="text/javascript">
+
+
+</script>
 
 
 <script type="text/javascript">
@@ -356,12 +409,15 @@ var config = {
 	displayHome();
 
 	firebase.auth().onAuthStateChanged(function(user) {
+		
 	  if (user) {
 	    // User is signed in.
 	    //globalCurrentUser = firebase.auth().currentUser;
 	    //var facebookAccessToken = provider.accessToken;				
 	    //var credential = firebase.auth.FacebookAuthProvider.credential(facebookAccessToken);
-	    emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(email, password);
+
+	    console.log("User has logged in");
+	    //emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(email, password);
 
 	 	rsvpAllowed = true;
     	
@@ -371,7 +427,7 @@ var config = {
    	    	document.getElementById('status').innerHTML = "Welcome, " + user.displayName;
    	    	console.log("User signed-in: " + user.displayName);
    	    }
-	    else if(userCreatedNewAccount && user.displayName == null){
+	    else if(userCreatedNewAccount){
 	    	
 	    	console.log("User logged in, displayName is null, and user created new account.");
 
@@ -391,29 +447,33 @@ var config = {
 
 			});
 			userCreatedNewAccount = false;		
+			console.log("User signed-in: " + user.displayName);
+			minimizeLoginWindow(100,100);
 	    }
+	    
 	    else{
 	    	console.log("User displayName = " + user.displayName);
 	    }
-	    minimizeLoginWindow();
+
+	    minimizeLoginWindow(100,100);
 	    $('#loginTab').hide();
 	    $('#signupTab').hide();
-	    $('#logoutTab').fadeIn(500);
-
-	    
+	    $('#logoutTab').fadeIn(500); 
 
 
-	  } else {
+	  }
+	  else {
 	    // No user is signed in.
 	    document.getElementById('loginStatus').innerHTML = "Please sign up or log in.";
 	    console.log("User signed-in: None");
 	    $('#loginTab').fadeIn(500);
 	    $('#signupTab').fadeIn(500);
 	    $('#logoutTab').hide();  
-		
-
 	  }
 	});
+
+
+
 
 	firebase.auth().getRedirectResult().then(function(result) {
 	  if (result.credential) {
@@ -421,13 +481,21 @@ var config = {
 	    var token = result.credential.accessToken;
 	    // ...
 	    facebookCredential = result.credential;
+		
 
-
-
+	    /*
+	    var emailForCredential = prompt("Please enter the e-mail you want to link to the Facebook account you signed up with:", "");
+  	  	var passwordForCredential = prompt("Please enter the password you want to link to the Facebook account you signed up with:", "");
+  	  	emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(emailForCredential, passwordForCredential);
+  	  	user.link(emailAndPasswordCredential);
+		*/
 
 	  }
 	  // The signed-in user info.
 	  var user = result.user;
+
+
+
       console.log("User signed-in: " + user.displayName);
 	  console.log("User displayName = " + user.displayName);
 	  document.getElementById('loginStatus').innerHTML = "Hi, " + user.displayName;
@@ -436,10 +504,7 @@ var config = {
 	  $('#signupTab').hide();
 	  $('#logoutTab').fadeIn(500);
 	  rsvpAllowed = true;
-	  var verifyEmail = prompt("Please verify your Facebook e-mail:",'');
-  	  var verifyPassword = prompt("Please verify your Facebook password:",'');
-  	  emailAndPasswordCredential = firebase.auth.EmailPasswordAuthProvider.credential(verifyEmail, verifyPassword);	
-      user.link(emailAndPasswordCredential);
+
 	  
 
 
@@ -455,16 +520,9 @@ var config = {
 	  // ...
 
 	  console.log("errorCode = " + errorCode + ". errorMessage = " + errorMessage + ". errorEmail = " + email);
-	  //console.log("Facebook User = " + user);
+
 	  var auth = firebase.auth();
-	  /*if (errorCode == 'auth/account-exists-with-different-credential'){
-	  	console.log(auth.fetchProvidersForEmail(email).PROVIDER_ID);
-	  	user.link(facebookCredential).then(function(user) {
-		  console.log("Account linking success");
-		}, function(error) {
-		  console.log("Account linking error");
-		});
-	  }*/
+	  
 
 	  if (error.code === 'auth/account-exists-with-different-credential') {
 	    // Step 2.
@@ -518,7 +576,7 @@ var config = {
 		    });
 		  }
 
-	  console.log(credential);  
+	 
 	  
 
 	});
@@ -534,46 +592,6 @@ var config = {
 	
 
 	  ////////////////////////////////////////////////////
-	  function initMap() {
-		  var pyrmont = {lat: 41.8880, lng: -87.6321};
-		  var ogilvie = {lat: 41.8830267, lng: -87.6405328};
-		  map = new google.maps.Map(document.getElementById('map'), {
-		    center: pyrmont,
-		    zoom: 16
-		    //place_id: ChIJV_s6ILEsDogRR_5H7mQn4nw
-		  });
-
-
-		  infowindow = new google.maps.InfoWindow();
-		  var service = new google.maps.places.PlacesService(map);
-		  service.nearbySearch({
-		    location: pyrmont,
-		    radius: 600,    
-		    type: ['hotels']
-		  }, callback);
-
-		  var riverRoastLogo = 'riverRoastLogo.png';
-
-		  var markerRiverRoast = new google.maps.Marker({			//Add marker for River Roast
-		    position: pyrmont,
-		    map: map,
-		    title: 'River Roast, hope to see you there!',
-		    icon: riverRoastLogo
-		  });
-		  markerRiverRoast.setAnimation(google.maps.Animation.BOUNCE);
-
-		  var trainImage = 'train.png';
-
-		  var markerOgilvie = new google.maps.Marker({				//Add marker for Ogilvie Train Station
-		    position: ogilvie,
-		    map: map,
-		    title: 'Ogilvie Train Station',
-		    icon: trainImage
-		  });
-
-		  
-
-		}
 
 	function callback(results, status) {
 	  if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -676,8 +694,9 @@ var config = {
 			$('#loginLastNameLabel').fadeIn(500);
 			$('#loginLastNameInput').fadeIn(500);
 			$('#loginButtonFirebase').hide();
+			$('#loginButtonFacebook').hide();
 			$('#signupFirebase').fadeIn(500);
-			document.getElementById('status').innerHTML = "Please sign up or log in with your Facebook credentials."
+			document.getElementById('status').innerHTML = "Please sign up."
 		}
 		else{
 
@@ -688,6 +707,7 @@ var config = {
 			$('#loginLastNameInput').hide();
 			$('#signupFirebase').hide();
 			$('#loginButtonFirebase').fadeIn(500);
+			$('#loginButtonFacebook').fadeIn(500);
 			document.getElementById('status').innerHTML = "Please log in with your e-mail and password or your Facebook credentials."
 
 			//alert("False");
@@ -791,6 +811,7 @@ var config = {
 			$('#cont1').hide();
 			$('#rsvpNotAllowed').fadeIn(500);
 		}
+		$('#rsvpButton').css({"background-color":"var(--tab-bg-color)", "color":"var(--title-font-color)"}) //Need this becaus when popping up #rsvpConfirm the RSVP button doesn't get a chance to get back to its initial color and background state.
 
 
 	}
@@ -808,49 +829,91 @@ var config = {
 	}
 
 	function submitAttendantsInfo(){
-		$('#enterAttendantsInfo').hide();
-		$('#rsvpConfirmText').hide();
-		$('#userFirstNameLabel').hide();
-		$('#userFirstNameInput').hide();
-		$('#userLastNameLabel').hide();
-		$('#userLastNameInput').hide();
-		$('#userEmailLabel').hide();
-		$('#userEmailInput').hide();
-		$('#userEntreeLabel').hide();
-		$('#userEntreeLabel1').hide();
-		$('#userEntreeLabel2').hide();
-		$('#userEntreeInputRadio1').hide();
-		$('#userEntreeInputRadio2').hide();
+		var submitValid = false;
+		
+			$('#enterAttendantsInfo').hide();
+			$('#rsvpConfirmText').hide();
+			$('#userFirstNameLabel').hide();
+			$('#userFirstNameInput').hide();
+			$('#userLastNameLabel').hide();
+			$('#userLastNameInput').hide();
+			$('#userEmailLabel').hide();
+			$('#userEmailInput').hide();
+			$('#userEntreeLabel').hide();
+			$('#userEntreeLabel1').hide();
+			$('#userEntreeLabel2').hide();
+			$('#userEntreeInputRadio1').hide();
+			$('#userEntreeInputRadio2').hide();
 
-		$('#submitAttendantsInfo').hide();		
-		var usersFirstName = document.getElementById('userFirstNameInput').value;
-		var usersLastName = document.getElementById('userLastNameInput').value;
-		var usersEmail = document.getElementById('userEmailInput').value;
-		var usersEntree1 = document.getElementById('userEntreeInputRadio1').checked;
-		var usersEntree2 = document.getElementById('userEntreeInputRadio2').checked;
-		var userEntreeChoice;
-		//console.log(usersEntree1 + " " + usersEntree2);
-		if (usersEntree1 = true){
-			userEntreeChoice = 'River Roast Chicken';
-		}
-		else if (usersEntree2 = true){
-			userEntreeChoice = 'Slow Roasted Pork';
-		}
-		else{
-			alert('Please pick an entree');
-		}
-		//console.log(userEntreeChoice);
-		if (usersFirstName!='' && usersLastName !=''){
-			var userFirstAndLastName = usersFirstName + " " + usersLastName;
-			firebase.database().ref('users/' + userFirstAndLastName).push({
-				e_mail: usersEmail,
-				entree: userEntreeChoice
-			});
-		}
-		$('#bringingGuests').fadeIn(500);
-		$('#yesBringingGuest').fadeIn(500);
-		$('#noBringingGuest').fadeIn(500);
-		return userFirstAndLastName;
+			$('#submitAttendantsInfo').hide();		
+			var usersFirstName = document.getElementById('userFirstNameInput').value;
+			var usersLastName = document.getElementById('userLastNameInput').value;
+			var usersEmail = document.getElementById('userEmailInput').value;
+			var usersEntree1 = document.getElementById('userEntreeInputRadio1').checked;
+			var usersEntree2 = document.getElementById('userEntreeInputRadio2').checked;
+			var userEntreeChoice;
+			//console.log(usersEntree1 + " " + usersEntree2);
+			if (usersEntree1){
+				userEntreeChoice = 'River Roast Chicken';
+				submitValid = true;
+			}
+			else if (usersEntree2){
+				userEntreeChoice = 'Slow Roasted Pork';
+				submitValid = true;
+			}
+			else{
+				alert('Please pick an entree');
+				minimizeRsvpConfirmation();
+				rsvpConfirmation();
+				$('#enterAttendantsInfo').fadeIn(500);
+				$('#rsvpConfirmText').fadeIn(500);
+				$('#userFirstNameLabel').fadeIn(500);
+				$('#userFirstNameInput').fadeIn(500);
+				$('#userLastNameLabel').fadeIn(500);
+				$('#userLastNameInput').fadeIn(500);
+				$('#userEmailLabel').fadeIn(500);
+				$('#userEmailInput').fadeIn(500);
+				$('#userEntreeLabel').fadeIn(500);
+				$('#userEntreeLabel1').fadeIn(500);
+				$('#userEntreeLabel2').fadeIn(500);
+				$('#userEntreeInputRadio1').fadeIn(500);
+				$('#userEntreeInputRadio2').fadeIn(500);
+
+				$('#submitAttendantsInfo').fadeIn(500);
+			}
+			console.log(userEntreeChoice);
+			if (usersFirstName!='' && usersLastName !='' && submitValid){
+				var userFirstAndLastName = usersFirstName + " " + usersLastName;
+				firebase.database().ref('users/' + userFirstAndLastName).push({
+					e_mail: usersEmail,
+					entree: userEntreeChoice
+				});
+				$('#bringingGuests').fadeIn(500);
+				$('#yesBringingGuest').fadeIn(500);
+				$('#noBringingGuest').fadeIn(500);
+			}else{
+				alert('Please make sure you entered your first name and last name.');
+				minimizeRsvpConfirmation();
+				rsvpConfirmation();
+				$('#enterAttendantsInfo').fadeIn(500);
+				$('#rsvpConfirmText').fadeIn(500);
+				$('#userFirstNameLabel').fadeIn(500);
+				$('#userFirstNameInput').fadeIn(500);
+				$('#userLastNameLabel').fadeIn(500);
+				$('#userLastNameInput').fadeIn(500);
+				$('#userEmailLabel').fadeIn(500);
+				$('#userEmailInput').fadeIn(500);
+				$('#userEntreeLabel').fadeIn(500);
+				$('#userEntreeLabel1').fadeIn(500);
+				$('#userEntreeLabel2').fadeIn(500);
+				$('#userEntreeInputRadio1').fadeIn(500);
+				$('#userEntreeInputRadio2').fadeIn(500);
+
+				$('#submitAttendantsInfo').fadeIn(500);
+
+			}
+			
+		
 	}
 
 	function yesBringingGuest(){
@@ -890,15 +953,7 @@ var config = {
 				$('#lastNameInput1').fadeIn(500);
 
 				$('#guestEntreeChoices1').fadeIn(500);
-				/*
-				$('#guestEntreeLabelChoice1').fadeIn(500);
-				$('#guestEntreeLabel11').fadeIn(500);
-				$('#guestEntreeInputRadio11').fadeIn(500);
-				$('#guestEntreeLabel12').fadeIn(500);
-				$('#guestEntreeInputRadio12').fadeIn(500);
-				$('#guestEntreeLabel13').fadeIn(500);
-				$('#guestEntreeInputRadio13').fadeIn(500);
-				*/
+				
 				correctNumberOfGuests=true;
 				break;
 
@@ -1087,114 +1142,7 @@ var config = {
 		
 	}
 
-	/*
 
-	 // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      //minimizeLoginWindow(1,200);
-      //testAPI();
-      logInMethod = '1';
-
-      //loggedIn = "Facebook";
-      
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app with your username/password.';
-      logInMethod = '2';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook, or login with your username/password.';
-      logInMethod = '3';
-    }
-    console.log("Jump to " + logInMethod);
-
-  }
-
-  */
-
-  /*
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-
-    });
-  }
-
-  */
-
-  /*
-  function logIntoFacebook(){
-  	minimizeLoginWindow(1,1);
-  	FB.login(function(response) {
-	    if (response.authResponse) {
-	     console.log('Welcome!  Fetching your information.... ');
-	     FB.api('/me', function(response) {
-	       console.log('Good to see you, ' + response.name + '.');
-	       
-	     });
-	    } else {
-	     console.log('User cancelled login or did not fully authorize.');
-	    }
-	},{scope: 'email,public_profile'});
- }
- */
-  
-
-  
- /*
-  function checkFirebaseLogin(){
-  	var email = document.getElementById('loginUsernameInput').value;
-  	var password = document.getElementById('loginPasswordInput').value;
-  	if (email != null) {
-  		email = document.getElementById('loginUsernameInput').value;
-  	} 
-
-  	if (password != null){
-  		password = document.getElementById('loginPasswordInput').value;  		
-  	}
-	
-  	firebase.auth().onAuthStateChanged(function(user) {
-	  if (user) {
-	    // User is signed in.
-	    var signedInUser = firebase.auth().currentUser;
-
-	    console.log(signedInUser.displayName + " is signed in.");
-	    logInMethod = '4';
-	    
-	  } else {
-	    // No user is signed in.
-	    console.log('No user is signed in - Firebase.');
-	    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  // ...
-		  console.log(errorMessage + " " + errorCode);
-		});
-		logInMethod = '5';
-	  }
-
-	  
-	});
-	    
-  }
-
-*/
 
   function signupFirebase(){
   	userCreatedNewAccount = true;
@@ -1210,7 +1158,7 @@ var config = {
 
   		firebase.auth().createUserWithEmailAndPassword(usernameFirebase, passwordFirebase).catch(function(error) {
 		  // Handle Errors here.
-		  
+		  console.log(error.code + error.message);
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
 		  if (errorCode = 'auth/email-already-in-use'){
@@ -1220,16 +1168,15 @@ var config = {
 		  else{
 		  	document.getElementById('status').innerHTML = "Something went wrong, please create a new user, try again, or try signing in with Facebook";
 		  }
+		  
 		});
+  		
   		
 
   	}
   	else{
   		document.getElementById('status').innerHTML = "Please check Username and Password fields...";
   	}
-
-	
-
   	
   }
 
@@ -1270,18 +1217,17 @@ var config = {
 		  }
 		  else if (errorCode == 'auth/wrong-password'){
 		  	var providerAuth = firebase.auth();
-  			if (providerAuth.fetchProvidersForEmail(usernameFirebase)!=null){
-  				var providers = providerAuth.fetchProvidersForEmail(usernameFirebase).then(function(providers){
-  					console.log("User already exists with the following provider: " + providers[0]);  	
-  					providerAuth.signInWithRedirect(provider) 
+  			if (providerAuth.fetchProvidersForEmail(usernameFirebase)!=null){ //look for other auth providers used before with same e-mail
+
+
+  				var providers = providerAuth.fetchProvidersForEmail(usernameFirebase);
+  				console.log("User already exists with the following provider: " + providers[0]);  	
+  				
+  				providerAuth.signInWithRedirect(provider);
+  				
+  				console.log("!!!!!!!!!!!!!!!!");
   					
-  						
-  					
-  					console.log("Signed in via Facebook!");
-  				});  				
-  				//document.getElementById('status').innerHTML = "User already exists, please sign in with Facebook";
   			}
-  			//console.log(providerAuth.fetchProvidersForEmail(usernameFirebase)); 
 		  	else{
 		  		document.getElementById('status').innerHTML = "Looks like your password is wrong, please try re-entering it.";
 		  	}
@@ -1320,86 +1266,7 @@ function yesLogoutPressed(){
 
   }
 
-  /*
-    function loginHandler(loginVar){
-
-  	switch (loginVar){
-
-  		case '0':
-  			//maximizeLoginWindow();
-  			window.fbAsyncInit = function() {
-			  FB.init({
-			    appId      : '966635506787028',
-			    cookie     : true,  // enable cookies to allow the server to access 
-			                        // the session
-			    xfbml      : true,  // parse social plugins on this page
-			    version    : 'v2.5' // use graph api version 2.5
-			  });
-
-			  // Now that we've initialized the JavaScript SDK, we call 
-			  // FB.getLoginStatus().  This function gets the state of the
-			  // person visiting this page and can return one of three states to
-			  // the callback you provide.  They can be:
-			  //
-			  // 1. Logged into your app ('connected')
-			  // 2. Logged into Facebook, but not your app ('not_authorized')
-			  // 3. Not logged into Facebook and can't tell if they are logged into
-			  //    your app or not.
-			  //
-			  // These three cases are handled in the callback function.
-
-			  FB.getLoginStatus(function(response) {                                                       //Check for Login status
-			    statusChangeCallback(response);
-			    
-			    });
-
-			  };
-
-  			console.log("case 0 has been executed");
-
-  			//break;
-
-  		case '1':
-  			minimizeLoginWindow(1,1);
-  			console.log("case 1 has been executed");
-  			//break;
-
-  		case '2':
-  			minimizeLoginWindow(1,1);
-  			displayHome();
-  			console.log("case 2 has been executed");
-  			//break;
-
-  		case '3':
-  			checkFirebaseLogin();
-  			minimizeLoginWindow(1,1);
-  			console.log("case 3 has been executed");
-  			//break;
-
-  		case '4':
-  			minimizeLoginWindow(1,1);
-  			console.log("case 4 has been executed");
-
-  			//break;
-
-  		case '5':
-  			//signUpWindow();
-  			console.log("Need to sign up!");
-  			console.log("case 5 has been executed");
-
-  			//break;
-  		default: 
-  			console.log("Login method undetermined!");
-  			//break; NOT NEEDED IN JAVASCRIPT SWITCH
-  	}
-  	console.log(loginVar);
-  	
-  }
-
   
-  loginHandler(logInMethod); // Check login status /////////////FIIIIIIIIIXXXXXX
-
-*/
   
 </script>
 
