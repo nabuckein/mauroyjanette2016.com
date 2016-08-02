@@ -52,6 +52,7 @@ var signupOrLogin = 0;
 			userCreatedNewAccount = false;		
 			console.log("User signed-in: " + user.displayName);
 			minimizeLoginWindow(100,100);
+			
 	    }
 	    
 	    else{
@@ -59,6 +60,7 @@ var signupOrLogin = 0;
 	    }
 
 	    minimizeLoginWindow(100,100);
+	    
 	    $('#loginTab').hide();
 	    $('#signupTab').hide();
 	    $('#logoutTab').fadeIn(500); 
@@ -247,6 +249,8 @@ var signupOrLogin = 0;
 		$('#rsvpConfirm').hide();
 		$('#logoutConfirm').hide();
 		$('#rsvpNotAllowed').hide();
+		$('#submitAcknowledge').hide();
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#cont1').fadeIn(500);
 
 	}
@@ -282,7 +286,7 @@ var signupOrLogin = 0;
 	}
 
 	function maximizeLoginWindow(buttonPressed){
-
+		$('#body').css({"background-blend-mode":"overlay"});
 		$('#cont1').hide();
 		$('#status').fadeIn(500);
 		$('#fb-login-button').fadeIn(500);		
@@ -320,6 +324,7 @@ var signupOrLogin = 0;
 	}
 
 	function minimizeLoginWindow(hideRate, fadeInRate){
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#floatTest').hide(hideRate);
 		$('#cont1').fadeIn(fadeInRate);
 		
@@ -348,16 +353,20 @@ var signupOrLogin = 0;
 	}
 
 	function logoutConfirmation(){
+		
 		$('#cont1').hide();
 		$('#logoutConfirm').fadeIn(500);
+		$('#body').css({"background-blend-mode":"overlay"});
 	}
 
 	function minimizeLogoutConfirmation(){
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#cont1').fadeIn(500);
 		$('#logoutConfirm').hide();
 	}
 
 	function rsvpConfirmation(){
+		$('#body').css({"background-blend-mode":"overlay"});
 		
 		if (rsvpAllowed){
 			$('#enterAttendantsInfo').hide();
@@ -409,10 +418,12 @@ var signupOrLogin = 0;
 			$('#lastNameLabel5').hide();
 			$('#lastNameInput5').hide();
 			$('#submitGuestsInfo').hide();
+			$('#body').css({"background-blend-mode":"overlay"});
 			$('#cont1').hide();
 			$('#rsvpConfirm').fadeIn(500);
 		}
 		else{
+			$('#body').css({"background-blend-mode":"overlay"});
 			$('#cont1').hide();
 			$('#rsvpNotAllowed').fadeIn(500);
 		}
@@ -423,6 +434,7 @@ var signupOrLogin = 0;
 
 	function minimizeRsvpConfirmation(){
 		$('#rsvpConfirm').hide();
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#cont1').fadeIn(500);
 	}
 
@@ -430,6 +442,7 @@ var signupOrLogin = 0;
 		
 		
 		$('#rsvpNotAllowed').hide();
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#cont1').fadeIn(500);
 	}
 
@@ -459,6 +472,9 @@ var signupOrLogin = 0;
 			var usersEntree1 = document.getElementById('userEntreeInputRadio1').checked;
 			var usersEntree2 = document.getElementById('userEntreeInputRadio2').checked;
 			var userEntreeChoice;
+
+
+
 			//console.log(usersEntree1 + " " + usersEntree2);
 			if (usersEntree1){
 				userEntreeChoice = 'River Roast Chicken';
@@ -526,6 +542,7 @@ var signupOrLogin = 0;
 
 	function cancelSubmitAttendantsInfo(){
 		$('#rsvpConfirm').hide();
+		$('#body').css({"background-blend-mode":"normal"});
 		$('#cont1').fadeIn(500);
 	}
 
@@ -538,11 +555,12 @@ var signupOrLogin = 0;
 	}			
 	
 	function noBringingGuest(){
+		$("#rsvpConfirm").hide();
+		$('#submitAcknowledge').fadeIn(500);
 		$('#noBringingGuest').hide();
 		$('#yesBringingGuest').hide();
-		document.getElementById('bringingGuests').innerHTML = 'Thank you, we look forward to seeing you there!';
-		$('#submitGuestsInfo').fadeIn(500);
-
+		
+		
 	}
 
 	function howManyGuests(){
@@ -657,7 +675,8 @@ var signupOrLogin = 0;
 	function submitGuestsInfo(){
 		
 		$('#rsvpConfirm').hide();
-		$('#cont1').fadeIn(500);
+		$('#submitAcknowledge').fadeIn(500);
+
 		var firstNameInput1 = document.getElementById('firstNameInput1').value;
 		var lastNameInput1 = document.getElementById('lastNameInput1').value;
 		var firstNameInput2 = document.getElementById('firstNameInput2').value;
@@ -732,10 +751,17 @@ var signupOrLogin = 0;
 				
 		}
 		
-
-		
 		
 	}
+
+	function doneAcknowledgePressed(){
+
+		$('#submitAcknowledge').hide();
+		$('#body').css({"background-blend-mode":"normal"});
+		$('#cont1').fadeIn(500);
+
+	}
+
 	function saveCurrentUserAsAttendant(){
 		$('#yesRsvpButton').hide();
 		$('#noRsvpButton').hide();
@@ -801,7 +827,7 @@ var signupOrLogin = 0;
 
 
   function logIntoFacebook(){
-
+  	
   	firebase.auth().signInWithRedirect(provider);
 
   }
@@ -869,6 +895,7 @@ var signupOrLogin = 0;
 
 function yesLogoutPressed(){
   	//logoutFB(); //CAUTION, this will log you out from Facebook as well
+  	
   	firebase.auth().signOut().then(function() {
 	  // Sign-out successful.
 	}, function(error) {

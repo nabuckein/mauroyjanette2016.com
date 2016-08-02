@@ -23,6 +23,8 @@ span{
 	color:white;
 }
 
+
+
 #logoutConfirm, #rsvpNotAllowed{
 	border-radius: 10px;
 	margin-top: 200px;
@@ -37,7 +39,7 @@ span{
 	color:black;
 
 }
-#rsvpConfirm{
+#rsvpConfirm, #submitAcknowledge{
 	border-radius: 10px;
 	margin-top: 200px;
 	z-index: 10;	
@@ -47,7 +49,7 @@ span{
 	color:black;
 	
 }
-#rsvpConfirmText{
+#rsvpConfirmText, #submitAcknowledgeText{
 	font-family: 'Dosis';
 	font-size: 20px;
 	color:black;
@@ -131,6 +133,9 @@ span{
 }
 #howManyGuestsButton{
 	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#doneAcknowledgeButton{
 	margin-bottom: 30px;
 }
 .title{
@@ -348,12 +353,12 @@ span{
 #our-story{
 	max-height: 375px;
 	max-width: 500px;
-	margin-left:auto;
+	margin-left: auto;
 	margin-right: auto;
 	font-family:'Dosis';
 	font-size: 24px;
 	margin-top: 125px;		
-	color:white;
+	color: white;
 }
 
 #imgChurch{
@@ -366,6 +371,7 @@ span{
 }
 #img0{
 	margin-top:50px;
+	border-radius: 10px;
 		
 }
 #registry{
