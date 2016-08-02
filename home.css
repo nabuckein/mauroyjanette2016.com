@@ -322,13 +322,15 @@ span{
 }
 #submitAttendantsInfo{
 	margin-top: 40px;
-	margin-bottom: 40px;
+	margin-bottom: 0px;
 }
 #submitGuestsInfo{
 	margin-top:30px;
 	margin-bottom: 50px;
 }
-
+#cancelSubmitAttendantsInfo{
+	background-color: var(--cancel-button-bg-color);
+}
 #loginInput{
 	margin-top:100px;
 	font-family:'Dosis';
